@@ -53,6 +53,7 @@ const toNewPatient = (object: unknown): NewPatient => {
       ssn: parseEntry(object.ssn),
       gender: parseGender(object.gender),
       occupation: parseEntry(object.occupation),
+      entries: [],
     };
     return newEntry;
   }
