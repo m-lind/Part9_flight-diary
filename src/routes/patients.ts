@@ -9,6 +9,11 @@ router.get("/", (_req, res) => {
   res.send(patients);
 });
 
+router.get("/sensitive/", (_req, res) => {
+  const sensitivePatients = patientsService.getSensitivePatientsInfo();
+  res.send(sensitivePatients);
+});
+
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   const patient = patientsService.getPatient(id);

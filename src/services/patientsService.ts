@@ -15,6 +15,10 @@ const getNonSensitivePatientsInfo = (): NonSensitivePatientInfo[] => {
   }));
 };
 
+const getSensitivePatientsInfo = (): Patient[] => {
+  return patients;
+};
+
 const getPatient = (id: string): Patient | undefined => {
   return patients.find(patient => patient.id === id);
 };
@@ -33,4 +37,5 @@ export default {
   getNonSensitivePatientsInfo,
   addPatient,
   getPatient,
+  getSensitivePatientsInfo,
 };
