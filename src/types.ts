@@ -24,13 +24,15 @@ export enum Gender {
   Other = "other",
 }
 
-interface BaseEntry {
+export interface BaseEntry {
   id: string;
   description: string;
   date: string;
   specialist: string;
   diagnosisCodes?: Array<Diagnosis["code"]>;
 }
+
+export type BaseEntryWithoutId = Omit<BaseEntry, "id">;
 
 export enum HealthCheckRating {
   "Healthy" = 0,
@@ -65,3 +67,9 @@ export type Entry =
   | HospitalEntry
   | OccupationalHealthcareEntry
   | HealthCheckEntry;
+
+type UnionOmit<T, K extends string | number> = T extends unknown
+  ? Omit<T, K>
+  : never;
+
+export type NewEntry = UnionOmit<Entry, "id">;
