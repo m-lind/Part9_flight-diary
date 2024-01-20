@@ -67,13 +67,15 @@ const toNewPatient = (object: unknown): NewPatient => {
   throw new Error("Incorrect data: a field missing");
 };
 
-const parseDiagnosisCodes = (object: unknown): Array<Diagnosis["code"]> => {
-  if (!object || typeof object !== "object" || !("diagnosisCodes" in object)) {
+const parseDiagnosisCodes = (
+  diagnosisCodes: unknown
+): Array<Diagnosis["code"]> => {
+  if (!diagnosisCodes || typeof diagnosisCodes !== "object") {
     // we will just trust the data to be in correct form
     return [] as Array<Diagnosis["code"]>;
   }
 
-  return object.diagnosisCodes as Array<Diagnosis["code"]>;
+  return diagnosisCodes as Array<Diagnosis["code"]>;
 };
 
 interface DischargeData {
@@ -89,7 +91,7 @@ const parseDischarge = (discharge: unknown): DischargeData => {
   if ("date" in discharge && "criteria" in discharge) {
     return {
       date: parseDate(discharge.date),
-      criteria: parseDate(discharge.criteria),
+      criteria: parseEntry(discharge.criteria),
     };
   }
   throw new Error("Incorrect discharge data");
@@ -193,7 +195,6 @@ export const toNewEntry = (object: unknown): NewEntry => {
     if ("diagnosisCodes" in object) {
       newEntry.diagnosisCodes = parseDiagnosisCodes(object.diagnosisCodes);
     }
-    console.log(newEntry);
     return newEntry;
   }
 

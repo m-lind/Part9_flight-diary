@@ -5,6 +5,10 @@ Content-Type: application/json
     "description": "Just testing",
     "date": "2024-12-01",
     "specialist": "Julia Tester",
-    "type": "HealthCheck",
-    "healthCheckRating": 2
+    "type": "Hospital",
+    "discharge": {
+        "date": "2024-12-02",
+        "criteria": "This code works"
+    },
+    "diagnosisCodes": ["M24.2", "M51.2"]
 }
