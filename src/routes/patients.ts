@@ -21,6 +21,12 @@ router.get("/:id", (req, res) => {
   res.send(patient);
 });
 
+router.get("/:id/entries", (req, res) => {
+  const id = req.params.id;
+  const patientEntries = patientsService.getPatientEntries(id);
+  res.send(patientEntries);
+});
+
 router.post("/", (req, res) => {
   try {
     const newPatient = toNewPatient(req.body);

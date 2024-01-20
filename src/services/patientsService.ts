@@ -39,6 +39,14 @@ const addPatient = (patient: NewPatient): Patient => {
   return newPatient;
 };
 
+const getPatientEntries = (patientId: string): Entry[] => {
+  const patient = patients.find(p => p.id === patientId);
+  if (!patient) {
+    throw new Error(`Patient not found!`);
+  }
+  return patient.entries;
+};
+
 const addPatientEntry = (entry: NewEntry, patientId: string): Entry => {
   const newEntry: Entry = {
     id: uuid(),
@@ -60,4 +68,5 @@ export default {
   getPatient,
   getSensitivePatientsInfo,
   addPatientEntry,
+  getPatientEntries,
 };
